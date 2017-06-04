@@ -1,0 +1,33 @@
+﻿@section scripts {
+    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/Scripts/edit.js")
+}
+<div class="page-header">
+    <h1>@ViewBag.Title</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form action="/Home/Add">
+            <button class="btn btn-lg btn-primary" type="submit">Add new company</button>
+        </form>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Stocks</h2>
+            </div>
+            <div class="panel-body">
+                <ul class="list-unstyled" data-bind="foreach: stocks">
+                    <li>
+                        <strong><span data-bind="text: Name"></span></strong> (<span data-bind="text: Ticker"></span>)
+                        <small><a href="#" data-bind="click: $parent.deleteStock">Delete</a></small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+﻿@section scripts {
+    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/Scripts/chart.js")
+}
+<div class="page-header">
+    <h1>@ViewBag.Title</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    <span data-bind="text: stock.Name"></span>
+                </h2>
+            </div>
+            <div id="chart" margin: 0 auto"></div>
+        </div>
+    </div>
+</div>
+
+<form data-bind="submit: makePrediction" method="post">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">1st day</h2>
+                </div>
+                <div class="panel-body" data-bind="with: day1">
+                    <input type="text" name="close1" data-bind="value:Close" placeholder="Close" required/>
+                    <input type="text" name="volume1" data-bind="value:Volume" placeholder="Volume" required/>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">2nd day</h2>
+                </div>
+                <div class="panel-body" data-bind="with: day2">
+                    <input type="text" name="close2" data-bind="value:Close" placeholder="Close" required />
+                    <input type="text" name="volume2" data-bind="value:Volume" placeholder="Volume" required />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">3rd day</h2>
+                </div>
+                <div class="panel-body" data-bind="with: day3">
+                    <input type="text" name="close3" data-bind="value:Close" placeholder="Close" required />
+                    <input type="text" name="volume3" data-bind="value:Volume" placeholder="Volume" required />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <span data-bind="text: prediction"></span>
+            <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Predict</button>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</form>

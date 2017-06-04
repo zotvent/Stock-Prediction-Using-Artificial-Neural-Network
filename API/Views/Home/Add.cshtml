@@ -1,0 +1,33 @@
+﻿<style>
+    input {
+        max-width: none;
+    }
+</style>
+
+<div class="page-header">
+    <h1>@ViewBag.Title</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-4"></div>
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Add Stock</h2>
+            </div>
+            <div class="panel-body">
+                <form class="form-signin" action="/Home/HandleCSVForm" method="post" enctype="multipart/form-data">
+                    <input class="form-control" type="text" name="Name" placeholder="Name" required/>
+                    <input class="form-control" type="text" name="Ticker" placeholder="Ticker" required/>
+                    <br />
+                    <input type="file" accept=".csv" name="File" placeholder="Choose file" required/>
+                    <br />
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4"></div>
+</div>

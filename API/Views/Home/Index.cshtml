@@ -1,0 +1,26 @@
+﻿@section scripts {
+    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/Scripts/index.js")
+}
+<div class="page-header">
+    <h1>@ViewBag.Title</h1>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Stocks</h2>
+            </div>
+            <div class="panel-body">
+                <ul class="list-unstyled" data-bind="foreach: stocks">
+                    <li>
+                        <a href="#" data-bind="click: $parent.getStockChart">
+                            <strong><span data-bind="text: Name"></span></strong> (<span data-bind="text: Ticker"></span>)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
+    </div>
+</div>

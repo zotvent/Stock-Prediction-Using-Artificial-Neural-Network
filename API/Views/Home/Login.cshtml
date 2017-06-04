@@ -1,0 +1,16 @@
+﻿@Styles.Render("~/Content/signin.css")
+
+<div class="container">
+    <form class="form-signin" method="post" action="/Home/HandleLoginForm" enctype="multipart/form-data">
+        <h2 class="form-signin-heading">Sign in for <strong>admin</strong></h2>
+
+        <label for="username" class="sr-only">Username</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+
+        <label for="pwd" class="sr-only">Password</label>
+        <input type="password" id="pwd" name="pwd" class="form-control" placeholder="Password" required>
+
+        @Html.ValidationMessage("error")
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>

@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NeuronNetworkDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="NeuronNetworkDBModelStoreContainer">
+    <EntitySet Name="StocksHistory" EntityType="NeuronNetworkDBModel.Store.StocksHistory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Stocks" EntityType="NeuronNetworkDBModel.Store.Stocks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PredictedStockHistories" EntityType="NeuronNetworkDBModel.Store.PredictedStockHistories" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="StockStockHistory" Association="NeuronNetworkDBModel.Store.StockStockHistory">
+      <End Role="Stock" EntitySet="Stocks" />
+      <End Role="StockHistory" EntitySet="StocksHistory" />
+    </AssociationSet>
+    <AssociationSet Name="PredictedStockHistoryStock" Association="NeuronNetworkDBModel.Store.PredictedStockHistoryStock">
+      <End Role="PredictedStockHistory" EntitySet="PredictedStockHistories" />
+      <End Role="Stock" EntitySet="Stocks" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="StocksHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="High" Type="float" Nullable="false" />
+    <Property Name="Low" Type="float" Nullable="false" />
+    <Property Name="Open" Type="float" Nullable="false" />
+    <Property Name="Close" Type="float" Nullable="false" />
+    <Property Name="Volume" Type="float" Nullable="false" />
+    <Property Name="StockId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Stocks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ticker" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Data" Type="varbinary(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PredictedStockHistories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Close" Type="float" Nullable="false" />
+    <Property Name="StockId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="StockStockHistory">
+    <End Role="Stock" Type="NeuronNetworkDBModel.Store.Stocks" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="StockHistory" Type="NeuronNetworkDBModel.Store.StocksHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockHistory">
+        <PropertyRef Name="StockId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PredictedStockHistoryStock">
+    <End Role="PredictedStockHistory" Type="NeuronNetworkDBModel.Store.PredictedStockHistories" Multiplicity="*" />
+    <End Role="Stock" Type="NeuronNetworkDBModel.Store.Stocks" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <ReferentialConstraint>
+      <Principal Role="Stock">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PredictedStockHistory">
+        <PropertyRef Name="StockId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NeuronNetworkDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="NeuronNetworkDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="StocksHistory" EntityType="NeuronNetworkDBModel.StockHistory" />
+          <EntitySet Name="Stocks" EntityType="NeuronNetworkDBModel.Stock" />
+          <AssociationSet Name="StockStockHistory" Association="NeuronNetworkDBModel.StockStockHistory">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="StockHistory" EntitySet="StocksHistory" />
+          </AssociationSet>
+          <EntitySet Name="PredictedStockHistories" EntityType="NeuronNetworkDBModel.PredictedStockHistory" />
+          <AssociationSet Name="PredictedStockHistoryStock" Association="NeuronNetworkDBModel.PredictedStockHistoryStock">
+            <End Role="PredictedStockHistory" EntitySet="PredictedStockHistories" />
+            <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="StockHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="High" Type="Double" Nullable="false" />
+          <Property Name="Low" Type="Double" Nullable="false" />
+          <Property Name="Open" Type="Double" Nullable="false" />
+          <Property Name="Close" Type="Double" Nullable="false" />
+          <Property Name="Volume" Type="Double" Nullable="false" />
+          <Property Name="StockId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Ticker" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="History" Relationship="NeuronNetworkDBModel.StockStockHistory" FromRole="Stock" ToRole="StockHistory" />
+          <Property Name="Data" Type="Binary" Nullable="false" />
+          <NavigationProperty Name="PredictedStockHistories" Relationship="NeuronNetworkDBModel.PredictedStockHistoryStock" FromRole="Stock" ToRole="PredictedStockHistory" />
+        </EntityType>
+        <Association Name="StockStockHistory">
+          <End Type="NeuronNetworkDBModel.Stock" Role="Stock" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="NeuronNetworkDBModel.StockHistory" Role="StockHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StockHistory">
+              <PropertyRef Name="StockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PredictedStockHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Close" Type="Double" Nullable="false" />
+          <Property Name="StockId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="PredictedStockHistoryStock">
+          <End Type="NeuronNetworkDBModel.PredictedStockHistory" Role="PredictedStockHistory" Multiplicity="*" />
+          <End Type="NeuronNetworkDBModel.Stock" Role="Stock" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PredictedStockHistory">
+              <PropertyRef Name="StockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NeuronNetworkDBModelStoreContainer" CdmEntityContainer="NeuronNetworkDBEntities">
+    <EntitySetMapping Name="StocksHistory">
+      <EntityTypeMapping TypeName="IsTypeOf(NeuronNetworkDBModel.StockHistory)">
+        <MappingFragment StoreEntitySet="StocksHistory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="High" ColumnName="High" />
+          <ScalarProperty Name="Low" ColumnName="Low" />
+          <ScalarProperty Name="Open" ColumnName="Open" />
+          <ScalarProperty Name="Close" ColumnName="Close" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="StockId" ColumnName="StockId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stocks">
+      <EntityTypeMapping TypeName="IsTypeOf(NeuronNetworkDBModel.Stock)">
+        <MappingFragment StoreEntitySet="Stocks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Ticker" ColumnName="Ticker" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PredictedStockHistories">
+      <EntityTypeMapping TypeName="IsTypeOf(NeuronNetworkDBModel.PredictedStockHistory)">
+        <MappingFragment StoreEntitySet="PredictedStockHistories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Close" ColumnName="Close" />
+          <ScalarProperty Name="StockId" ColumnName="StockId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
