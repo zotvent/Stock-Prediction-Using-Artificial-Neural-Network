@@ -2,7 +2,7 @@
 
 ## Used Technologies
 
-### Install NuGet Packages
+### NuGet Packages
 
 - [encog-dotnet-core](http://www.heatonresearch.com/encog/)
 - [Bootstrap CSS](http://getbootstrap.com)
@@ -19,12 +19,13 @@ It takes 3 consecutive days in CSV file. In each day volume and close price were
 
 ## Usage
 
-1. Create database from NNModel.edmx.sql script. If you apply script to existing database make sure that your database is called **_NeuronNetworkDB_**.
-2. In API project in Web.config in connectionStrings sector change path to your database.
-3. Log in as administrator and create a new neural network for some company.
-4. Choose created company at home page.
-5. Now you can see the results of trained neural network on chart.
-6. Below the chart you can enter volume and price for 3 consecutive days and make a prediction for the 4th day.
+1. Install NuGet packages mentioned above.
+2. Create database from NNModel.edmx.sql script. If you apply script to existing database make sure that your database is called **_NeuronNetworkDB_**.
+3. In API project in Web.config in connectionStrings sector change path to your database.
+4. Log in as administrator and create a new neural network for some company.
+5. Choose created company at home page.
+6. Now you can see the results of trained neural network on chart.
+7. Below the chart you can enter volume and price for 3 consecutive days and make a prediction for the 4th day.
 
 ## How to log in as administrator
 
