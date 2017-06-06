@@ -1,4 +1,4 @@
-# Stock-Prediction-Using-Artificial-Neural-Network
+# Stock Prediction Using Artificial Neural Network
 
 ## Used Technologies
 
