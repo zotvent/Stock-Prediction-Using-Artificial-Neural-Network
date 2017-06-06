@@ -37,4 +37,4 @@ It takes 3 consecutive days in CSV file. In each day volume and close price were
 
 ## Credits
 
-[Nadil Karimov](https://github.com/nadilk) neural network architecture
+[Nadil Karimov](https://github.com/nadilk) neural network architecture and implementation
